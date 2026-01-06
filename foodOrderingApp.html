@@ -14,6 +14,41 @@
         //sort by cost, rating, delivery time(eta), name
         //filter by cost, rating, cuisine type, tagging(indian, chinese)
         //debouncing in search
+        //PAGINATION - load more on scroll or button click
+
+        //When giving machine coding round first five minutes make a basic html structure in blank paper and note down what to achieve
+        //Like make a screen inside it make cards and then identify components like 
+        //favorite button - filters restaurants which are tagged favorite
+        //card with picture , name , rating, etc.
+        //Now make a sample array of objects with restaurant data and note down what keys are required that need to be used for display
+        //like{
+        // id: 1,
+        // name: "Domino's Pizza",
+        // rating: 4.5,
+        // eta: "30-40 mins",
+        // costForTwo: 500,
+        // Tags: ["Italian", "Fast Food", "American"],
+        // menu: [...]}
+
+        //Then sort out what features can be made in the given time
+        //API call to fetch data or use sample data
+        //A card with all restaurant details which will be mapped from the array of objects
+        //filtering based on tags and cost
+        //sorting based on rating and cost
+        //search based on name
+
+        //Then identify functions and their basic purpose
+        //fetchRestaurants() - fetch data from api or use sample data - subtask 1
+        //getCard(restaurant) - return card html for a restaurant - subtask 2
+        //renderRestaurants(restaurants) - render all restaurant cards on the screen and also wrap getCard function map inside parent container- subtask 3
+        //searchRestaurants(criteria) - search restaurants based on criteria like cost, tags, This will trigger on onchange input and call renderRestaurants function - subtask 4
+        //sortRestaurants(criteria) - sort restaurants based on criteria like rating, cost. This will trigger on onClick sorting field and call renderRestaurants function - subtask 5
+        //filterRestaurants(filters) - filter restaurants based on filters like cost range, tags. This will trigger on onchange select and call renderRestaurants function - subtask 6
+        //favoriteRestaurant(id) - mark/unmark restaurant as favorite and update UI accordingly based on Onclick favorite  button on card and this function persists that data in localstorage - as list of restaurants(try to use event bubbling / capturing here) - subtask 7
+        //setLocalStorageData(key, value) - set list of favorites restaurants in localstorage - utility function
+        //deleteLocalStorageData(key, value) - delete list of favorites restaurants in localstorage - utility function
+
+        //MAP OUT EVERYTHING IN first 5 minutes and try to make a happy flow first
     </script>
 </body>
 </html>
