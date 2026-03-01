@@ -1,4 +1,7 @@
+
+/*
 //style.css
+
 .App {
   font-family: sans-serif;
   text-align: center;
@@ -26,6 +29,8 @@
 .result:hover {
   background-color: beige;
 }
+*/
+
 
 
 
