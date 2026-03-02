@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>this</title>
+  </head>
+  <body>
+    This in javascript
+    <button onclick="alert(this.tagName)">Click me!</button>
+    <script>
+      "use strict";
+      //this behave differently in different context. Also behave differently in strict and non-strict mode
+      //this inside global space
+      //in global space this represents global object which varies depending on js run time environment. window in case of browsers and global in case of nodejs.
+      console.log("global scope", this); // globalObject. it is undefined in strict mode
+
+      //this inside a function scope
+      function x() {
+        // Behaves different in strict and non-strict mode.
+        console.log("function scope", this);
+
+        // What is the value of this inside function?
+        // The value of this is undefined inside function but due to this substitution it is replaced with global object in non-strict mode.
+      }
+
+      // Why this behaves differently in strict and non-strict mode?
+      //It is because of (this substitution)
+      // In non-strict mode if the value of this is null or
+      // undefined then it's value is replaced with value in
+      // global scope of this
+      // The value of this depends on how the function is called. Whether it has been called with some object reference like globalObject window
+      x(); //if function is called without object reference this value is undefined and becomes window due to this substitution in non-strict mode
+
+      window.x(); //if function is define with object reference this value becomes referenced object
+
+      //function vs method - when you write function inside object(in the lingo) is called method
+      //this inside object's method
+      const obj = {
+        a: 10,
+        x: function () {
+          console.log("this inside object's method", this);
+        },
+      };
+      obj.x();
+
+      // call, apply, and bind methods are ways for (sharing methods)
+      //they can be used to give new reference object to this keyword.
+      //they manipulates the value of this or overrides it by accepting
+      // new object as argument
+      // which this will refer to
+      // EG:
+      const student = {
+        name: "Aarti",
+        printName: function () {
+          console.log(this.name);
+        },
+      };
+      student.printName();
+      const student2 = {
+        name: "Deepa",
+      };
+      //value of this=student2
+      student.printName.call(student2); //here call method take value of this used to override student object.
+
+      // value of this inside arrow function
+      // arrow function does not have their own this binding.
+      // they get this value from their
+      // lexical environment/enclosing lexical context
+      // you just need to find out how this keyword will behave in their
+      // enclosing lexical context
+
+      const subject = {
+        marks: 80,
+        name: "Maths",
+        printThis: () => {
+          // this points to global environment as it binds itself to it's
+          // lexical environment context which is global in this case
+          console.log(this, "subject");
+        },
+      };
+      subject.printThis();
+
+      const subject2 = {
+        marks: 80,
+        name: "Maths",
+        printThis: () => {
+          // here x lexical environment is
+          // printThis arrow function whose
+          // lexical environment is global scope as
+          // if we console this inside this arrow printThis
+          // it will point to global
+          x = () => {
+            console.log(this, "subject2");
+          };
+          x();
+        },
+      };
+      subject2.printThis();
+
+      const subject3 = {
+        marks: 80,
+        name: "Maths",
+        printThis: function () {
+          x = () => {
+            // here x lexical environment is
+            // printThis function whose
+            // which points to subject3 object as
+            // if we console this inside this printThis
+            // it will point to subject3 object
+            console.log(this, "subject3");
+          };
+          x();
+        },
+      };
+      subject3.printThis();
+      //this inside DOM element => reference to that that HTML element
+      //refer onclick event in button element above
+
+      // this inside classes, constructors
+    </script>
+  </body>
+</html>
