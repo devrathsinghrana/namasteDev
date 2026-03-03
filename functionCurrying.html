@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function Currying</title>
+</head>
+<body>
+    <h1>Function Currying</h1>
+    <script>
+        function multiply(a, b) {
+            console.log(a * b);
+        }
+        const multiplyBy2=multiply.bind(this,2)
+        multiplyBy2(5)
+
+        function multiplication(x){
+            return function(y){
+                console.log(x*y);
+            }
+        }
+        const multiplyBy3=multiplication(3)
+        multiplyBy3(4)
+    </script>
+</body>
+</html>
