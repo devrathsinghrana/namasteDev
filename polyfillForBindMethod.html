@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bind method polyfill</title>
+  </head>
+  <body>
+    <h1>Bind method polyfill</h1>
+    <script>
+      const name = {
+        firstName: "Devrath",
+        lastName: "Rana",
+      };
+      function printName(hometown, state, country) {
+        console.log(
+          `${this.firstName} ${this.lastName} lives in ${hometown} ${state}, ${country}`,
+        );
+      }
+      Function.prototype.myBind = function (...args) {
+        const obj = this;
+        const params = args.slice(1);
+        return function (...args2) {
+          obj.apply(args[0], [...params, ...args2]);
+        };
+      };
+      const printMyName = printName.bind(name, "Bareily");
+      printMyName("U.P.", "India");
+      const printMyName2 = printName.myBind(name, "Musoorie");
+      printMyName2("UK", "India");
+    </script>
+  </body>
+</html>
