@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async and Defer</title>
+</head>
+<body>
+    <pre>
+        In normal script loading, the browser will stop parsing the HTML document until the script 
+        is downloaded(from network call load js files or scripts) and executed. 
+        This can lead to a delay in rendering the page, especially if the script is large or if there 
+        are multiple scripts.
+
+        In async script loading, the browser will continue parsing the HTML document while the script is being downloaded. 
+        Once the script is downloaded, it will be executed immediately, without waiting for the HTML parsing to complete.
+        This can lead to faster page rendering, as the browser can continue to load and render the page while the script 
+        is being downloaded.(So html parse is blocked during execution not loading). But it breaks the order in which scripts 
+        are written as some may fetch quickly and some may take time.
+
+        In defer script loading, the browser will continue parsing the HTML document while the script is 
+        being downloaded. 
+        Once the HTML parsing is complete, the deferred script will be executed in the order 
+        they were written in the HTML document.
+        This allows for faster page rendering while still maintaining 
+        the order of script execution. Deferred scripts are executed 
+        after the HTML document has been fully parsed, but before the 
+        DOMContentLoaded event is fired. This is preferred over async as it has best of both worlds. 
+        It allows the browser to continue parsing the HTML document while the script is being downloaded, 
+        and it ensures that the script is executed in the correct order specially for scripts which are 
+        interdependent. For modular ones you can still use async as they are independent 
+        and can be executed whenever they are downloaded.
+    </pre>
+</body>
+</html>
