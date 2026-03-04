@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debouncing</title>
+</head>
+
+<body>
+    <input type="text" name="search" id="search" onkeyup="betterFunction()">
+    <script>
+        let counter = 0;
+        function getData() {
+            console.log("Fetching Data...", ++counter);
+        }
+        function debounce(fn, delay) {
+            let timer;
+            return function () {
+                clearTimeout(timer);//clears the previous set timer if the function is called again within the delay period
+                const context = this
+                const args = arguments;
+                timer = setTimeout(() => {
+                    fn.apply(context, args);//we can provide context to it for bug free code
+                }, delay);
+            }
+        }
+        const betterFunction = debounce(getData, 300)
+    </script>
+</body>
+
+</html>
