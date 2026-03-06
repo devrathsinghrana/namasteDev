@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Bubbling and Capturing/Trickeling</title>
+</head>
+
+<body>
+    <p>Events first trickle down (capturing), then bubble up (bubbling).</p>
+    <div id="grandparent" style="padding: 20px; background-color: rgb(31, 223, 140);">
+        Grandparent Div
+        <div id="parent" style="padding: 20px; background-color: lightblue;">
+            Parent Div
+            <div id="child" style="padding: 20px; background-color: lightcoral;">
+                Child Div
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Event Capturing Example
+        document.getElementById('grandparent').addEventListener('click', function () {
+            console.log('grandparent Div Clicked!');
+            event.stopPropagation(); // Stop further propagation of the event
+        }, true);
+
+        document.getElementById('parent').addEventListener('click', function () {
+            console.log('Parent Div Clicked!');
+        }, false);//by default false is bubbling
+
+        document.getElementById('child').addEventListener('click', function () {
+            console.log('Child Div Clicked!');
+        }, true);
+    </script>
+</body>
+
+</html>
