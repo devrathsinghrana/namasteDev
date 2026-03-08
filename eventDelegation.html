@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Delegation</title>
+</head>
+<!-- 
+ Event delegation saves a lot of memory
+ cleaner and less code
+ dom manipulation becomes easier as we don't need to attache new event to new element added inside parent element
+
+ LIMITATIONS:
+ 1. We can't stop event propagation to parent element as we are attaching event to parent element
+ 2. There are a lot of events like blur, focus, window resizing which don't bubble up to parent element so we can't use event delegation for those events
+ -->
+<body>
+    <div id="categories">
+        <div id="cameras">Cameras</div>
+        <div id="laptops">Laptops</div>
+        <div id="tablets">Tablets</div>
+        <!-- We can also add uppercase  -->
+    </div>
+    <script>
+        document.querySelector("#categories").addEventListener("click", function (event) {
+            if (event.target.id === "cameras") {
+                console.log("Cameras category clicked!");
+            } else if (event.target.id === "laptops") {
+                console.log("Laptops category clicked!");
+            } else if (event.target.id === "tablets") {
+                console.log("Tablets category clicked!");
+            }
+        });
+    </script>
+</body>
+
+</html>
