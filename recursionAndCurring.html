@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursion and Currying</title>
+</head>
+
+<body>
+    <h1>Recursion and Currying</h1>
+    <script>
+        const sum = a => b => b ? sum(a + b) : a;
+        console.log(sum(1)(2)(3)(4)()); // 10
+    </script>
+</body>
+
+</html>
