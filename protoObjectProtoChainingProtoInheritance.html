@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototype object, chaining and inheritance</title>
+</head>
+<body>
+    <h1>Prototype object, chaining and inheritance</h1>
+    <script>
+        // prototype object can be accessed using __proto__ property, 
+        // which points to the prototype object of the constructor function. 
+        // When a method is called on an object, JavaScript first looks for 
+        // the method on the object itself. If it doesn't find it, it 
+        // looks up the prototype chain until it finds the method or 
+        // reaches the end of the chain.
+
+        const arr1=[];
+        // true so arr1 inherits from Array.prototype and __proto__ can be used to access it's prototype
+        // Array.prototype is the prototype object for all arrays in JavaScript, and it contains methods like push, pop, etc.
+
+        console.log(arr1.__proto__ === Array.prototype); 
+        // true, Array.prototype inherits from Object.prototype, which is the root of the prototype chain in JavaScript.
+        // this linking of prototype objects is known as prototype chaining, and it allows objects to inherit properties and methods from their prototypes.
+        console.log(arr1.__proto__.__proto__ === Object.prototype); 
+        function Person(name) {
+            this.name = name;
+        }
+
+        Person.prototype.greet = function() {
+            console.log(`Hello, my name is ${this.name}`);
+        };
+
+
+        const alice = new Person('Alice');
+        alice.greet(); // Hello, my name is Alice
+
+        const bob = new Person('Bob');
+        bob.greet(); // Hello, my name is Bob
+
+        console.log(alice.__proto__ === Person.prototype); // true
+        console.log(bob.__proto__ === Person.prototype); // true
+
+        const obj1={
+            name: 'Object 1',
+            greet() {
+                console.log(`Hello, I am ${this.name}`);
+            }
+        };
+        const obj2={
+            name: 'Object 2',
+           
+        };
+        // NEVER do this due to performance issues, but for demonstration purposes only
+        // Prototype inheritance allows obj2 to access the greet method defined in obj1 through the prototype chain.
+        obj2.__proto__=obj1;
+        obj2.greet(); // Hello, I am Object 2
+        obj1.greet(); // Hello, I am Object 1
+    </script>
+</body>
+</html>
