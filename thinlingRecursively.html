@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thinking Recursively</title>
+</head>
+
+<body>
+    <h1>Thinking Recursively</h1>
+    <script>
+        const user = {
+            name: "John",
+            age: 30,
+            hobbies: ["reading", "gaming"],
+            address: {
+                personal: {
+                    city: "Delhi",
+                    area: {
+                        landmark: "near park",
+                    }
+                },
+                professional: {
+                    city: "New York",
+                    zip: "10001",
+                    area: "near office"
+                },
+            }
+        }
+
+        const emptyObj = {}
+        function magic(obj, parentKey = "") {
+            for (let key in obj) {
+                const emptyObjKey = `${parentKey}_${key}`
+                if (typeof obj[key] === "object") {
+                    magic(obj[key], emptyObjKey)
+                } else {
+                    emptyObj[emptyObjKey] = obj[key]
+                }
+            }
+        }
+        magic(user, "user");
+        console.log(emptyObj)
+    </script>
+</body>
+
+</html>
