@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debouncing Throttling</title>
+</head>
+
+<body>
+    <h1>Debouncing & Throttling</h1>
+    //keystroke
+    //resizing
+    //multiple clicks - machine gun and pistol
+    //scrolling
+
+    <button id="btn">Click me</button>
+    <script>
+        let timer
+        const debounce = (fn) => {
+            clearTimeout(timer)
+            timer = setTimeout(fn, 500)
+        }
+        const throttle = (fn) => {
+            setInterval(fn, 10000)
+        }
+        const handleResize = () => {
+            throttle(() => {
+                console.log("Window resized!")
+            })
+        }
+        const handleClick = () => {
+            debounce(() => {
+                console.log("Btn clicked!")
+            })
+        }
+        window.addEventListener("resize", handleResize)
+        const buttonElement = document.querySelector("#btn")
+        buttonElement.addEventListener("click", handleClick)
+    </script>
+</body>
+
+</html>
